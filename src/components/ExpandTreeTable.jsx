@@ -214,6 +214,10 @@ const NestedTable = props => {
   const removeData = item => {
     setData(() => {
       const newData = JSON.parse(JSON.stringify(editData));
+      if(newData.length===1&&item.key===newData[0].key){
+        message.warning(`不可删除唯一的一条数据`)
+        return newData
+      }
       removeDataRepeat(newData, item.key);
       return newData;
     });
